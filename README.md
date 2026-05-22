@@ -38,8 +38,8 @@ A weather application that displays temperature, humidity and weather conditions
 
 ## Repository Structure
 
-- PRODIGY WD 01
-- PRODIGY WD 02
-- PRODIGY WD 03
-- PRODIGY WD 04
-- PRODIGY WD 05
+- PRODIGY_WD_01
+- PRODIGY_WD_02
+- PRODIGY_WD_03
+- PRODIGY_WD_04
+- PRODIGY_WD_05
