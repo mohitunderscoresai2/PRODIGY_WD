@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P MOHIT SAI | Portfolio</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:linear-gradient(135deg,#0f172a,#1e3a8a,#312e81);
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+      background:rgba(0,0,0,0.2);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:bold;
+      color:#38bdf8;
+      letter-spacing:2px;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:30px;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:white;
+      font-size:18px;
+      transition:0.3s;
+      padding:10px 15px;
+      border-radius:10px;
+    }
+
+    nav ul li a:hover{
+      background:#38bdf8;
+      color:black;
+      transform:scale(1.05);
+    }
+
+    /* HERO SECTION */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:50px;
+      background:
+      radial-gradient(circle at top left, rgba(56,189,248,0.3), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(139,92,246,0.3), transparent 30%),
+      linear-gradient(135deg,#111827,#1e3a8a,#312e81);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:rgba(56,189,248,0.08);
+      border-radius:50%;
+      top:-150px;
+      left:-150px;
+      filter:blur(20px);
+    }
+
+    .hero::after{
+      content:'';
+      position:absolute;
+      width:400px;
+      height:400px;
+      background:rgba(139,92,246,0.10);
+      border-radius:50%;
+      bottom:-150px;
+      right:-150px;
+      filter:blur(20px);
+    }
+
+    .hero-content{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:50px;
+      z-index:1;
+      width:100%;
+      max-width:1200px;
+      flex-wrap:wrap;
+    }
+
+    .text{
+      flex:1;
+    }
+
+    .text h1{
+      font-size:65px;
+      margin-bottom:20px;
+    }
+
+    .text h2{
+      color:#38bdf8;
+      margin-bottom:20px;
+      font-size:30px;
+    }
+
+    .text p{
+      font-size:20px;
+      line-height:1.8;
+      color:#dbeafe;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      padding:15px 35px;
+      border:none;
+      border-radius:30px;
+      background:#38bdf8;
+      color:black;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:white;
+      transform:translateY(-5px);
+    }
+
+    /* PROFILE IMAGE */
+
+    .profile{
+      flex:1;
+      display:flex;
+      justify-content:center;
+    }
+
+    .profile img{
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      object-fit:cover;
+      border:6px solid #38bdf8;
+      box-shadow:0 0 25px rgba(0,0,0,0.4);
+    }
+
+    /* SECTIONS */
+
+    section{
+      padding:100px 60px;
+      text-align:center;
+    }
+
+    section h2{
+      font-size:45px;
+      color:#38bdf8;
+      margin-bottom:40px;
+    }
+
+    /* ABOUT */
+
+    .about-text{
+      max-width:900px;
+      margin:auto;
+      font-size:20px;
+      line-height:1.9;
+      color:#dbeafe;
+    }
+
+    /* SKILLS */
+
+    .skills{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .skill-card{
+      background:#1e293b;
+      padding:30px;
+      border-radius:20px;
+      transition:0.3s;
+      box-shadow:0 0 15px rgba(0,0,0,0.2);
+    }
+
+    .skill-card:hover{
+      background:#2563eb;
+      transform:translateY(-10px);
+    }
+
+    .skill-card h3{
+      margin-bottom:15px;
+      color:#38bdf8;
+    }
+
+    /* PROJECTS */
+
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .project-card{
+      background:#1e293b;
+      padding:30px;
+      border-radius:20px;
+      transition:0.3s;
+      box-shadow:0 0 15px rgba(0,0,0,0.2);
+    }
+
+    .project-card:hover{
+      transform:scale(1.05);
+      background:#2563eb;
+    }
+
+    .project-card h3{
+      margin-bottom:15px;
+      color:#38bdf8;
+    }
+
+    /* CONTACT */
+
+    .contact-box{
+      background:#1e293b;
+      padding:40px;
+      border-radius:20px;
+      max-width:700px;
+      margin:auto;
+      box-shadow:0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .contact-box p{
+      font-size:20px;
+      margin:20px 0;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#111827;
+      text-align:center;
+      padding:20px;
+      color:#94a3b8;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+        padding:20px;
+      }
+
+      nav ul{
+        gap:15px;
+      }
+
+      .hero{
+        padding-top:140px;
+      }
+
+      .hero-content{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .text h1{
+        font-size:45px;
+      }
+
+      .text h2{
+        font-size:24px;
+      }
+
+      .profile img{
+        width:250px;
+        height:250px;
+      }
+
+      section{
+        padding:80px 25px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">MOHIT</div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+  </nav>
+
+  <!-- HERO SECTION -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="text">
+
+        <h1>P MOHIT SAI</h1>
+
+        <h2>Web Developer & Programmer</h2>
+
+        <p>
+          Passionate web developer skilled in HTML, CSS,
+          JavaScript and Java. I create modern and responsive
+          websites with interactive user experiences.
+        </p>
+
+        <button class="btn">
+          Explore Portfolio
+        </button>
+
+      </div>
+
+      <!-- Profile Image -->
+
+      <div class="profile">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile">
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <h2>About Me</h2>
+
+    <p class="about-text">
+
+      Hello! I am <strong>P MOHIT SAI</strong>, currently pursuing my 
+      B.Tech at <strong>KLH University</strong>. I am passionate about 
+      web development, programming and designing responsive websites.
+
+      <br><br>
+
+      I completed my schooling till 10th class at 
+      <strong>Hindu Public School</strong>, where I developed a strong 
+      interest in computers and technology.
+
+      <br><br>
+
+      I completed my Intermediate education at 
+      <strong>Sri Chaitanya Junior College</strong>. During this time,
+      I improved my analytical and problem-solving skills.
+
+      <br><br>
+
+      I enjoy creating modern web applications using HTML, CSS,
+      JavaScript and Java. My goal is to become a skilled software
+      developer and build innovative projects.
+
+    </p>
+
+  </section>
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+
+    <h2>My Skills</h2>
+
+    <div class="skills">
+
+      <div class="skill-card">
+        <h3>HTML5</h3>
+        <p>Creating structured and semantic webpages.</p>
+      </div>
+
+      <div class="skill-card">
+        <h3>CSS3</h3>
+        <p>Designing responsive and modern user interfaces.</p>
+      </div>
+
+      <div class="skill-card">
+        <h3>JavaScript</h3>
+        <p>Adding dynamic functionality and interactivity.</p>
+      </div>
+
+      <div class="skill-card">
+        <h3>Java</h3>
+        <p>Building object-oriented applications and logic.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <h2>Projects</h2>
+
+    <div class="projects">
+
+      <div class="project-card">
+        <h3>Responsive Landing Page</h3>
+        <p>Interactive landing page using HTML, CSS and JavaScript.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>Stopwatch Web App</h3>
+        <p>Stopwatch application with lap timer and reset functionality.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>Tic-Tac-Toe Game</h3>
+        <p>Responsive game with winner detection and restart option.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <h2>Contact Me</h2>
+
+    <div class="contact-box">
+
+      <p><strong>Name:</strong> P MOHIT SAI</p>
+
+      <p><strong>Email:</strong> mohitsaup@gmail.com</p>
+
+      <p><strong>Phone:</strong> +91 9346818714</p>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Portfolio Website | Designed by P MOHIT SAI
+
+  </footer>
+
+</body>
+</html>
