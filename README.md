@@ -1,120 +1,45 @@
-# PRODIGY Web Development Internship Tasks
+# Prodigy InfoTech Web Development Internship
 
-This repository contains all the tasks completed during the Prodigy InfoTech Web Development Internship.
+This repository contains all the tasks completed during my Web Development Internship at Prodigy InfoTech.
 
----
+## Author
+P MOHIT SAI
 
-# 👨‍💻 Author
-
-## P MOHIT SAI
-
-- Email: mohitsaup@gmail.com
-- Role: Web Development Intern
+Email: mohitsaup@gmail.com
 
 ---
 
-# 📌 Tasks Completed
+## Tasks Completed
 
-## 🔹 PRODIGY WD 01 - Responsive Landing Page
+### PRODIGY WD 01 - Responsive Landing Page
+A responsive landing page created using HTML, CSS and JavaScript.
 
-Created a modern and responsive landing page using HTML, CSS and JavaScript.
+### PRODIGY WD 02 - Stopwatch Web Application
+A stopwatch web application with start, pause and reset functionality.
 
-### Features
-- Interactive navigation menu
-- Hover effects
-- Responsive design
-- Modern UI layout
+### PRODIGY WD 03 - Tic-Tac-Toe Web Application
+An interactive Tic-Tac-Toe game developed using HTML, CSS and JavaScript.
 
-### Technologies Used
+### PRODIGY WD 04 - Personal Portfolio Website
+A personal portfolio website showcasing skills, projects and contact details.
+
+### PRODIGY WD 05 - Weather Web Application
+A weather application that displays temperature, humidity and weather conditions using API integration.
+
+---
+
+## Technologies Used
+
 - HTML
 - CSS
 - JavaScript
 
 ---
 
-## 🔹 PRODIGY WD 02 - Stopwatch Web Application
+## Repository Structure
 
-Developed a stopwatch web application with timer controls.
-
-### Features
-- Start timer
-- Pause timer
-- Reset timer
-- Lap functionality
-- Responsive UI
-
-### Technologies Used
-- HTML
-- CSS
-- JavaScript
-
----
-
-## 🔹 PRODIGY WD 03 - Tic-Tac-Toe Web Application
-
-Built an interactive Tic-Tac-Toe game for two players.
-
-### Features
-- Two-player gameplay
-- Winner detection
-- Restart game option
-- Interactive UI
-
-### Technologies Used
-- HTML
-- CSS
-- JavaScript
-
----
-
-## 🔹 PRODIGY WD 04 - Personal Portfolio Website
-
-Designed and developed a responsive personal portfolio website.
-
-### Features
-- About Me section
-- Skills section
-- Projects section
-- Contact section
-- Modern responsive UI
-
-### Technologies Used
-- HTML
-- CSS
-- JavaScript
-
----
-
-## 🔹 PRODIGY WD 05 - Weather Web Application
-
-Created a modern weather application using API integration.
-
-### Features
-- Search weather by city
-- Temperature display
-- Humidity and wind details
-- Responsive design
-- Modern UI effects
-
-### Technologies Used
-- HTML
-- CSS
-- JavaScript
-- OpenWeather API
-
----
-
-# 🚀 Repository Structure
-
-- PRODIGY WD 01 → Responsive Landing Page
-- PRODIGY WD 02 → Stopwatch Web Application
-- PRODIGY WD 03 → Tic-Tac-Toe Web Application
-- PRODIGY WD 04 → Personal Portfolio Website
-- PRODIGY WD 05 → Weather Web Application
-
----
-
-# 📚 Internship Domain
-
-Web Development Internship  
-Prodigy InfoTech
+- PRODIGY WD 01
+- PRODIGY WD 02
+- PRODIGY WD 03
+- PRODIGY WD 04
+- PRODIGY WD 05
