@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOHIT | Tic Tac Toe</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#1e1b4b,#2563eb);
+      overflow:hidden;
+      color:white;
+      position:relative;
+    }
+
+    /* Background Design */
+
+    .circle1{
+      position:absolute;
+      width:500px;
+      height:500px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.06);
+      top:-150px;
+      left:-150px;
+    }
+
+    .circle2{
+      position:absolute;
+      width:400px;
+      height:400px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.05);
+      bottom:-120px;
+      right:-120px;
+    }
+
+    /* Game Container */
+
+    .container{
+      z-index:1;
+      text-align:center;
+      background:rgba(255,255,255,0.08);
+      padding:40px;
+      border-radius:25px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 0 25px rgba(0,0,0,0.3);
+      animation:fadeIn 1.5s ease;
+    }
+
+    h1{
+      font-size:50px;
+      margin-bottom:10px;
+      color:white;
+    }
+
+    h2{
+      color:#38bdf8;
+      margin-bottom:30px;
+      font-size:24px;
+    }
+
+    /* Status */
+
+    #status{
+      font-size:24px;
+      margin-bottom:25px;
+      color:#ffffff;
+    }
+
+    /* Board */
+
+    .board{
+      display:grid;
+      grid-template-columns:repeat(3,120px);
+      gap:15px;
+      justify-content:center;
+    }
+
+    .cell{
+      width:120px;
+      height:120px;
+      background:rgba(255,255,255,0.1);
+      border-radius:20px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:55px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .cell:hover{
+      background:#38bdf8;
+      color:black;
+      transform:scale(1.05);
+    }
+
+    /* Button */
+
+    button{
+      margin-top:30px;
+      padding:14px 35px;
+      border:none;
+      border-radius:30px;
+      background:#38bdf8;
+      color:black;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:white;
+      transform:translateY(-5px);
+    }
+
+    /* Animation */
+
+    @keyframes fadeIn{
+
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* Responsive */
+
+    @media(max-width:500px){
+
+      .board{
+        grid-template-columns:repeat(3,90px);
+        gap:10px;
+      }
+
+      .cell{
+        width:90px;
+        height:90px;
+        font-size:40px;
+      }
+
+      h1{
+        font-size:38px;
+      }
+
+      .container{
+        width:95%;
+        padding:25px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+
+  <div class="circle1"></div>
+  <div class="circle2"></div>
+
+  <!-- Game -->
+
+  <div class="container">
+
+    <h1>Tic Tac Toe</h1>
+
+    <h2>Created by P MOHIT SAI</h2>
+
+    <div id="status">
+      Player X Turn
+    </div>
+
+    <!-- Board -->
+
+    <div class="board">
+
+      <div class="cell" onclick="makeMove(0)"></div>
+      <div class="cell" onclick="makeMove(1)"></div>
+      <div class="cell" onclick="makeMove(2)"></div>
+
+      <div class="cell" onclick="makeMove(3)"></div>
+      <div class="cell" onclick="makeMove(4)"></div>
+      <div class="cell" onclick="makeMove(5)"></div>
+
+      <div class="cell" onclick="makeMove(6)"></div>
+      <div class="cell" onclick="makeMove(7)"></div>
+      <div class="cell" onclick="makeMove(8)"></div>
+
+    </div>
+
+    <!-- Restart Button -->
+
+    <button onclick="restartGame()">
+      Restart Game
+    </button>
+
+  </div>
+
+  <!-- JavaScript -->
+
+  <script>
+
+    let board = ["","","","","","","","",""];
+    let currentPlayer = "X";
+    let gameOver = false;
+
+    const cells = document.querySelectorAll(".cell");
+    const statusText = document.getElementById("status");
+
+    // Winning Patterns
+
+    const winPatterns = [
+
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+
+      [0,4,8],
+      [2,4,6]
+
+    ];
+
+    // Make Move
+
+    function makeMove(index){
+
+      if(board[index] !== "" || gameOver){
+        return;
+      }
+
+      board[index] = currentPlayer;
+
+      cells[index].innerText = currentPlayer;
+
+      checkWinner();
+
+      if(!gameOver){
+
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+
+        statusText.innerText =
+        "Player " + currentPlayer + " Turn";
+      }
+    }
+
+    // Check Winner
+
+    function checkWinner(){
+
+      for(let pattern of winPatterns){
+
+        let a = pattern[0];
+        let b = pattern[1];
+        let c = pattern[2];
+
+        if(
+          board[a] &&
+          board[a] === board[b] &&
+          board[a] === board[c]
+        ){
+
+          statusText.innerText =
+          "🎉 Player " + board[a] + " Wins!";
+
+          gameOver = true;
+
+          return;
+        }
+      }
+
+      // Draw
+
+      if(!board.includes("")){
+
+        statusText.innerText = "😎 Match Draw!";
+
+        gameOver = true;
+      }
+    }
+
+    // Restart Game
+
+    function restartGame(){
+
+      board = ["","","","","","","","",""];
+
+      currentPlayer = "X";
+
+      gameOver = false;
+
+      statusText.innerText = "Player X Turn";
+
+      cells.forEach(cell => {
+
+        cell.innerText = "";
+
+      });
+    }
+
+  </script>
+
+</body>
+</html>
