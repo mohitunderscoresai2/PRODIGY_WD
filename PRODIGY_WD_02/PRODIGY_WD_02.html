@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOHIT | Stopwatch App</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#1e1b4b,#2563eb);
+      overflow:hidden;
+      color:white;
+    }
+
+    /* Background Circles */
+
+    .circle1{
+      position:absolute;
+      width:350px;
+      height:350px;
+      background:rgba(255,255,255,0.08);
+      border-radius:50%;
+      top:-100px;
+      left:-100px;
+    }
+
+    .circle2{
+      position:absolute;
+      width:450px;
+      height:450px;
+      background:rgba(255,255,255,0.06);
+      border-radius:50%;
+      bottom:-150px;
+      right:-150px;
+    }
+
+    /* Stopwatch Container */
+
+    .container{
+      width:400px;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(10px);
+      padding:40px;
+      border-radius:25px;
+      text-align:center;
+      z-index:1;
+      box-shadow:0 0 25px rgba(0,0,0,0.3);
+      animation:fadeIn 1.5s ease;
+    }
+
+    .container h1{
+      font-size:42px;
+      margin-bottom:25px;
+      color:#ffffff;
+    }
+
+    /* Time Display */
+
+    .time{
+      font-size:55px;
+      font-weight:bold;
+      margin:30px 0;
+      letter-spacing:3px;
+      color:#38bdf8;
+    }
+
+    /* Buttons */
+
+    .buttons{
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    button{
+      padding:14px 24px;
+      border:none;
+      border-radius:30px;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:bold;
+    }
+
+    .start{
+      background:#22c55e;
+      color:white;
+    }
+
+    .pause{
+      background:#f59e0b;
+      color:white;
+    }
+
+    .reset{
+      background:#ef4444;
+      color:white;
+    }
+
+    .lap{
+      background:#38bdf8;
+      color:black;
+    }
+
+    button:hover{
+      transform:translateY(-5px) scale(1.05);
+      opacity:0.9;
+    }
+
+    /* Lap Times */
+
+    .laps{
+      margin-top:30px;
+      max-height:200px;
+      overflow-y:auto;
+      text-align:left;
+      padding-right:10px;
+    }
+
+    .laps h2{
+      margin-bottom:15px;
+      color:#ffffff;
+      text-align:center;
+    }
+
+    .lap-item{
+      background:rgba(255,255,255,0.1);
+      padding:12px;
+      margin-bottom:10px;
+      border-radius:12px;
+      font-size:18px;
+    }
+
+    /* Animation */
+
+    @keyframes fadeIn{
+
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* Responsive */
+
+    @media(max-width:500px){
+
+      .container{
+        width:90%;
+        padding:25px;
+      }
+
+      .time{
+        font-size:40px;
+      }
+
+      .buttons{
+        flex-direction:column;
+      }
+
+      button{
+        width:100%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Design -->
+
+  <div class="circle1"></div>
+  <div class="circle2"></div>
+
+  <!-- Stopwatch -->
+
+  <div class="container">
+
+    <h1>Stopwatch</h1>
+
+    <div class="time" id="display">
+      00:00:00
+    </div>
+
+    <!-- Buttons -->
+
+    <div class="buttons">
+
+      <button class="start" onclick="startTimer()">
+        Start
+      </button>
+
+      <button class="pause" onclick="pauseTimer()">
+        Pause
+      </button>
+
+      <button class="reset" onclick="resetTimer()">
+        Reset
+      </button>
+
+      <button class="lap" onclick="lapTime()">
+        Lap
+      </button>
+
+    </div>
+
+    <!-- Lap Section -->
+
+    <div class="laps">
+
+      <h2>Lap Times</h2>
+
+      <div id="lapList"></div>
+
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+
+  <script>
+
+    let seconds = 0;
+    let minutes = 0;
+    let hours = 0;
+
+    let timer = null;
+
+    // Update Display
+
+    function updateDisplay(){
+
+      let h = hours < 10 ? "0" + hours : hours;
+      let m = minutes < 10 ? "0" + minutes : minutes;
+      let s = seconds < 10 ? "0" + seconds : seconds;
+
+      document.getElementById("display").innerText =
+      h + ":" + m + ":" + s;
+    }
+
+    // Start Timer
+
+    function startTimer(){
+
+      if(timer !== null){
+        return;
+      }
+
+      timer = setInterval(() => {
+
+        seconds++;
+
+        if(seconds == 60){
+          seconds = 0;
+          minutes++;
+        }
+
+        if(minutes == 60){
+          minutes = 0;
+          hours++;
+        }
+
+        updateDisplay();
+
+      },1000);
+    }
+
+    // Pause Timer
+
+    function pauseTimer(){
+
+      clearInterval(timer);
+      timer = null;
+    }
+
+    // Reset Timer
+
+    function resetTimer(){
+
+      clearInterval(timer);
+
+      timer = null;
+
+      seconds = 0;
+      minutes = 0;
+      hours = 0;
+
+      updateDisplay();
+
+      document.getElementById("lapList").innerHTML = "";
+    }
+
+    // Lap Function
+
+    function lapTime(){
+
+      if(timer === null){
+        return;
+      }
+
+      let lap = document.createElement("div");
+
+      lap.classList.add("lap-item");
+
+      lap.innerText =
+      "Lap : " + document.getElementById("display").innerText;
+
+      document.getElementById("lapList").appendChild(lap);
+    }
+
+  </script>
+
+</body>
+</html>
